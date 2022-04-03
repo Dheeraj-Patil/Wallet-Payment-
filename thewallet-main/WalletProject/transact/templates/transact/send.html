@@ -1,0 +1,45 @@
+{% extends 'base.html' %} {% block content %}
+<div class="container-fluid">
+  <!-- Page Heading -->
+  <div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Send Money</h1>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <div class="card border-left-primary shadow h-100 py-2">
+        <div class="card-body">
+          <div class="no-gutters align-items-center mx-5 my-5">
+            <form method="POST">
+              {% csrf_token %}
+              <div class="row text-center">
+                <div class="form-group mr-5">
+                  <label for="memo">Email</label>
+                  {{ form.email }}
+                </div>
+                <div class="form-group mr-5">
+                  <label for="amount">Amount</label>
+                  {{ form.amount }}
+                </div>
+                <div class="form-group mr-1">
+                  <label for="memo">Memo</label>
+                  {{ form.memo }}
+                </div>
+              </div>
+              <div class="form-group text-center my-2">
+                <input
+                  class="btn btn-success"
+                  type="submit"
+                  value="Send Money"
+                />
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<style></style>
+
+{% endblock %}

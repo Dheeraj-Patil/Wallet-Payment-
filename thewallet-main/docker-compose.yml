@@ -1,0 +1,27 @@
+services:
+  django:
+    build: ./SentinelAPI
+    command: >
+      sh -c "python manage.py test &&
+          python manage.py wait_for_db &&
+          python manage.py makemigrations &&
+          python manage.py migrate &&
+          python manage.py initadmin &&
+          python manage.py runserver 0.0.0.0:8000"
+    # command: >
+    #   sh -c "python manage.py wait_for_db &&
+    #       python manage.py makemigrations &&
+    #       python manage.py migrate_schemas --shared &&
+    #       python manage.py initadmin &&
+    #       python manage.py runserver 0.0.0.0:8000"
+
+    volumes:
+      - ./SentinelAPI:/usr/src/tachyon
+    expose:
+      - 8000
+    ports:
+      - 8000:8000
+    hostname: django
+    restart: on-failure
+    env_file:
+      - ./.env

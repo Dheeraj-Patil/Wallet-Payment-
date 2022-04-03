@@ -1,0 +1,62 @@
+{% extends 'base.html' %} {% block content %}
+<div class="container-fluid">
+  <!-- Page Heading -->
+  <div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Transaction History</h1>
+  </div>
+  <div class="container-fluid">
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+      <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">
+          Transactions on this Wallet
+        </h6>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table
+            class="table table-bordered"
+            id="dataTable"
+            width="100%"
+            cellspacing="0"
+          >
+            <thead>
+              <tr>
+                <th>Transaction ID</th>
+                <th>Memo</th>
+                <th>Party</th>
+                <th>Date and Time</th>
+                <th>Amount</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for tr in trc %}
+              <tr {% if tr.t_from == user %}
+                class="text-danger" {% else %} class="text-success" {% endif %}>
+                <td>{{tr.id|truncatechars:15}}</td>
+                <td class="">{{tr.memo}}</td>
+                <td 
+                {% if tr.wallet == wallet %}
+                >{{tr.t_to}}
+                {% else %}
+                >{{tr.t_from}}
+              {% endif %}
+              </td>
+                <td>{{tr.datetime}}</td>
+                <td>
+                  {% if tr.t_from == user %}
+                  -
+                   {% endif %}
+                  ${{tr.amount}}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<style></style>
+
+{% endblock %}

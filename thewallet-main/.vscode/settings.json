@@ -1,0 +1,11 @@
+{
+  "editor.rulers": [
+    { "column": 75, "color": "#51ad14" },
+    { "column": 79, "color": "#ff6291" }
+  ],
+  "python.linting.pylintEnabled": false,
+  "python.linting.enabled": true,
+  "python.linting.flake8Enabled": true,
+  "restructuredtext.confPath": "${workspaceFolder}/TachyonMTSB/docs/source",
+  "restructuredtext.languageServer.disabled": true
+}
